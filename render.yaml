@@ -1,0 +1,17 @@
+# One-click deploy on Render.com (free tier): builds React, then serves it + the API from Django.
+services:
+  - type: web
+    name: weather-truck-routing
+    runtime: python
+    plan: free
+    buildCommand: |
+      cd frontend && npm ci && npm run build && cd ../backend &&
+      pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: cd backend && gunicorn config.wsgi --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.12.4
+      - key: NODE_VERSION
+        value: 20.11.0
