@@ -156,8 +156,8 @@ export default function MapView({
       className="map"
     >
       <TileLayer
-        attribution='&copy; OpenStreetMap contributors &copy; CARTO'
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution='&copy; OpenStreetMap contributors, Tiles &copy; HOT'
+        url="https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png"
         subdomains="abcd"
         maxZoom={19}
       />
