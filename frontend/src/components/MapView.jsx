@@ -78,10 +78,11 @@ export default function MapView({ result, selectedId, onSelect, showHeat, hour }
 
   return (
     <MapContainer center={[39.5, -98.35]} zoom={4} preferCanvas className="map">
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abcd',
+    maxZoom: 19
+}).addTo(map);
       <FitBounds routes={routes} />
       {showHeat && <HeatLayer points={heatPoints} />}
       {/* Draw the selected route last so it sits on top. */}
